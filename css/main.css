@@ -1,0 +1,15 @@
+body {
+	background-color: rgb(250, 242, 218);
+}
+
+form {
+	margin-bottom: 20px;
+}
+
+.nav-span {
+	font-family: Calibri !important;
+}
+
+.lu {
+	color: #FF3366;
+}

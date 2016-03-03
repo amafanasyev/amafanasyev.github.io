@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html ng-app='salary-chart'>
+	<head>
+		<meta charset='utf-8'>
+		<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+		<meta name='viewport' content='width=device-width, initial-scale=1'>
+		<title>Salary chart</title>
+		<link rel='shortcut icon' href='favicon.ico' type='image/x-icon'>
+		<link rel='stylesheet' href='bower_components/bootstrap/dist/css/bootstrap.min.css'>
+		<link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.min.css">
+		<link rel="stylesheet" href="css/main.css">
+		<script src='bower_components/jquery/dist/jquery.min.js'></script>
+		<script src='bower_components/bootstrap/dist/js/bootstrap.min.js'></script>
+		<script src='bower_components/angular/angular.min.js'></script>
+		<script src="bower_components/Chart.js/Chart.min.js"></script>
+		<script src="bower_components/angular-chart.js/dist/angular-chart.min.js"></script>
+		<script src='js/app.js'></script>
+		<script src='js/controllers/salary.js'></script>
+	</head>
+	<body ng-controller='ChartController'>
+		<div class='navbar navbar-default navbar-static-top'>
+			<nav class='container-fluid' role='navigation'>
+				<div class='navbar-header'>
+					<a class='navbar-brand'>Salary chart</a>
+					<button type='button' class='navbar-toggle collapsed' data-toggle='collapse' data-target='.navbar-collapse'>
+						<span class='glyphicon glyphicon-menu-hamburger'></span>
+					</button>
+				</div>
+				<ul class='nav navbar-nav navbar-right collapse navbar-collapse'>
+					<li>
+						<a href='#chart'>
+							<i class='glyphicon glyphicon-stats'>
+								<span class='nav-span'>Chart</span>
+							</i>
+						</a>
+					</li>
+					<li>
+						<a href='#summary'>
+							<i class='glyphicon glyphicon-tasks'>
+								<span class='nav-span'>Summary</span>
+							</i>
+						</a>
+					</li>
+					<li>
+						<a href='#tunning'>
+							<i class='glyphicon glyphicon-wrench'>
+								<span class='nav-span'>Tune chart</span>
+							</i>
+						</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+		<div id='chart' class='col-xs-12 col-sm-8'>
+			<canvas class='chart-base' chart-type='type' chart-data='data' chart-labels='labels' chart-legend='true' />
+		</div>
+		<div id='summary' class='col-xs-12 col-sm-4'>
+			<div class='panel panel-info'>
+				<div class='panel-heading'>Salary summary</div>
+				<div class='panel-body'>
+					<div><strong>Total income:</strong> {{overall|currency:"RUB ":2}}</div>
+					<div><strong>Profit:</strong> {{profit|currency:"RUB ":2}}</div>
+					<div><strong>Rent:</strong> {{rent|currency:"RUB ":2}}</div>
+				</div>
+				<table class='table'>
+					<tbody>
+						<tr>
+							<td>
+								<div class='pull-right'>Lu <span class='lu glyphicon glyphicon-heart'></span></div>
+							</td>
+							<td>{{data[0]|currency:"RUB ":2}}</td>
+						</tr>
+						<tr>
+							<td>
+								<div class='pull-right'>Kovaleva</div>
+							</td>
+							<td>{{data[1]|currency:"RUB ":2}}</td>
+						</tr>
+						<tr>
+							<td>
+								<div class='pull-right'>Ksyusha</div>
+							</td>
+							<td>{{data[2]|currency:"RUB ":2}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div id='tunning' class='col-xs-12 col-sm-4'>
+			<form>
+				<fieldset class='form-group'>
+					<label for='rent'>Rent</label>
+					<div class='input-group'>
+						<span class='input-group-addon'>RUB</span>
+						<input id='rent' type='number' class='form-control' ng-model='rent'>
+					</div>
+					<small class='text-muted'>Monthly rent amount</small>
+				</fieldset>
+				<fieldset class='form-group'>
+					<label for='kovaleva-income'>Kovaleva's income</label>
+					<div class='input-group'>
+						<span class='input-group-addon'>RUB</span>
+						<input id='kovaleva' type='number' class='form-control' ng-model='kovaleva'>
+					</div>
+					<small class='text-muted'>Monthly income from Kovaleva's classes</small>
+				</fieldset>
+				<fieldset class='form-group'>
+					<label for='ksyusha-income'>Ksyusha's income</label>
+					<div class='input-group'>
+						<span class='input-group-addon'>RUB</span>
+						<input id='ksyusha-income' type='number' class='form-control' ng-model='ksyusha'>
+					</div>
+					<small class='text-muted'>Monthly income from Ksyusha's classes</small>
+				</fieldset>
+				<button type='submit' class='btn btn-primary' ng-click='applyChanges()'>Calculate</button>
+			</form>
+		</div>
+	</body>
+</html>
